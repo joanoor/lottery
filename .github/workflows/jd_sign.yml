@@ -30,13 +30,15 @@ jobs:
               run: |
                   npm i -g typescript
                   tsc
+                  console.log('生成文件成功!')
+                  ls
 
     jd_assign:
         needs: prepare
         runs-on: ubuntu-latest
         steps:
             - name: 执行脚本
-              run: node index.js
+              run: node ./index.js
                 
             - name: Upload result file
               uses: actions/upload-artifact@master
