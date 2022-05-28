@@ -27,8 +27,9 @@ jobs:
               run: npm install
 
             - name: tsc编译ts脚本
-              run: npm i -g typescript
-              run: tsc
+              run: |
+                  npm i -g typescript
+                  tsc
 
     jd_assign:
         needs: prepare
