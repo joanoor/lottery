@@ -31,9 +31,9 @@ jobs:
         shell: bash
 
       - name: 安装nodejs
-        uses: actions/setup-node@v1
+        uses: actions/setup-node@v3
         with:
-          node-version: '12.x'
+          node-version: '14'
 
       - name: 安装依赖
         run: |
