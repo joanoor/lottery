@@ -12,7 +12,6 @@ FILE=spide_shuangseqiu.html
 out_put=spide_tmp
 declare -a day_array=([1]="星期一" [2]="星期二" [3]="星期三" [4]="星期四" [5]="星期五" [6]="星期六" [7]="星期日")
 
-
 #清空系统中，程序运行过程所建立的缓存文件
 
 #[ ls *shuangseqiu_tmp* > /dev/null ] && rm -f *shuangseqiu_tmp*
