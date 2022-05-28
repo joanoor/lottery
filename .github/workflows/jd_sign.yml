@@ -9,7 +9,7 @@ env:
   UPLOAD_BESULT_DIR: true
 
 jobs:
-    prepare:
+    jd_sign:
         runs-on: ubuntu-latest
         steps:
             - name: 切换到runner上
@@ -30,13 +30,9 @@ jobs:
               run: |
                   npm i -g typescript
                   tsc
-                  console.log('生成文件成功!')
+                  echo 编译成功
                   ls
 
-    jd_assign:
-        needs: prepare
-        runs-on: ubuntu-latest
-        steps:
             - name: 执行脚本
               run: node ./index.js
                 
