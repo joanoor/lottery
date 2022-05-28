@@ -1,2 +1,3 @@
 node_modules
-JD_DailyBonus.js
+*.js
+CookieSet.json

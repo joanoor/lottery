@@ -218,6 +218,7 @@ do
 		echo "程序执行完毕!"
 	fi
 	#####################
-	rm -f *shuangseqiu_tmp* *shuangseqiu.tmp* $out_put 2>/dev/null
+	# 当运行在github action上时，这句注释掉
+	# rm -f *shuangseqiu_tmp* *shuangseqiu.tmp* $out_put 2>/dev/null
 	##################### 
 done
