@@ -1,18 +1,7 @@
 import { execSync } from 'child_process'
 import * as fs from 'fs'
-import axios from 'axios'
 import * as dayjs from 'dayjs'
-
-interface ResponseType {
-  code: number
-  message: string
-  data: {
-    pushid: string
-    readkey: string
-    error: string
-    errno: number
-  }
-}
+import * as rp from 'request-promise'
 
 class JDSign {
   cookie = process.env.JD_COOKIE
@@ -73,15 +62,17 @@ class JDSign {
 
     const SCKEY = this.push_key.replace(/[\r\n]/g, '')
 
-    axios
-      .post<ResponseType>(
-        `https://sctapi.ftqq.com/${SCKEY}.send?title=${text}&desp=${desp}`
-      )
+    rp.post({
+      uri: `https://sctapi.ftqq.com/${SCKEY}.send`,
+      form: { text, desp },
+      json: true,
+      method: 'POST',
+    })
       .then(res => {
-        const result = res.data
-        if (result.code === 0) {
+        if (res.code == 0) {
           console.log('通知发送成功，任务结束！')
         } else {
+          console.log(res)
           console.log('通知发送失败，任务中断！')
           fs.writeFileSync(this.error_path, JSON.stringify(res), 'utf8')
         }

@@ -4,26 +4,18 @@
 # Mail: joanoor@outlook.com
 # Created Time: 2019年01月27日 星期日 20时24分35秒
 # 本程序用于生成双色球号码，以供选择使用
-
 declare -i times=6
 declare -a red_numbers=("01" "02" "03" "04" "05" "06" "07" "08" "09" "10" "11" "12" "13" "14" "15" "16" "17" "18" "19" "20" "21" "22" "23" "24" "25" "26" "27" "28" "29" "30" "31" "32" "33")
 declare -a blue_numbers=("01" "02" "03" "04" "05" "06" "07" "08" "09" "10" "11" "12" "13" "14" "15" "16")
 FILE=spide_shuangseqiu.html
 out_put=spide_tmp
 declare -a day_array=([1]="星期一" [2]="星期二" [3]="星期三" [4]="星期四" [5]="星期五" [6]="星期六" [7]="星期日")
-
-
-
 #清空系统中，程序运行过程所建立的缓存文件
-
 #[ ls *shuangseqiu_tmp* > /dev/null ] && rm -f *shuangseqiu_tmp*
-rm -f *shuangseqiu_tmp* *shuangseqiu.tmp* 2>/dev/null
-
+rm -f *shuangseqiu_tmp* *shuangseqiu.tmp* 2 > /dev/null
 function generator(){
-	
 #	echo ${red_numbers[@]} | sed 's/ /\n/g' > shuangseqiu_tmp_red_numbers
 	echo ${red_numbers[@]} | xargs -n1 > shuangseqiu_tmp_red_numbers
-
 	for((i=0;i<times;i++))
 	do
 #		digit_red=$(wc -l<shuangseqiu_tmp_red_numbers)
@@ -49,7 +41,6 @@ function generator(){
 
 	rm -f *shuangseqiu_tmp_* 2>/dev/null
 }
-
 echo ""
 echo "=================本程序用于生成双色球号码，以供选择使用================"
 echo ""
@@ -184,10 +175,9 @@ do
 	echo -e "\033[1;30;41m"${str_tmp}"\033[0m"
 	
 	# 发送推送到微信上
-	PUSH_KEY="SCT151609TvHFngmV6BXKbbOoObcjHzuON"
-	title=$(date +"%Y年%m月%d日")双色球推荐号码
-	content=$(cat suppose_shuangseqiu.tmp_bak)
-	curl -X GET "https://sctapi.ftqq.com/${PUSH_KEY}.send?title=${title}&desp=${content}"
+	# PUSH_KEY="*******************"
+	# title=$(date +"%Y年%m月%d日")——双色球推荐号码
+	# curl -X GET "https://sctapi.ftqq.com/$PUSH_KEY.send?title=$title&desp=$str_tmp"
 
 	echo "==========================================="
 
