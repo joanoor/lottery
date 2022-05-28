@@ -36,15 +36,15 @@ jobs:
           node-version: '12.x'
 
       - name: 安装依赖
-              run: |
-                  npm install
-                  npm i request -g
+        run: |
+            npm install
+            npm i request -g
 
-            - name: tsc编译ts脚本
-              run: |
-                  npm i -g typescript
-                  tsc
-                  echo 编译成功
-                  ls
-            - name: 执行推送脚本
-              run: node ./lottery.js
+      - name: tsc编译ts脚本
+        run: |
+            npm i -g typescript
+            tsc
+            echo 编译成功
+            ls
+      - name: 执行推送脚本
+        run: node ./lottery.js
