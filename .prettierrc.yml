@@ -1,0 +1,8 @@
+semi: false
+singleQuote: true
+trailingComma: "es5"
+endOfLine: "auto"
+bracketSpacing: true
+bracketSameLine: false
+arrowParens: "avoid"
+htmlWhitespaceSensitivity: "ignore"

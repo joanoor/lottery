@@ -1,31 +1,41 @@
-name: 京东自动签到
+name: 京东自动签到领京豆
 
 on:
   schedule:
-    - cron: '*/10 0 * * *'     
+    - cron: '*/30 * * * *'     
 env:
   JD_COOKIE: ${{ secrets.JD_COOKIE }}
   PUSH_KEY: ${{ secrets.PUSH_KEY }}
   UPLOAD_BESULT_DIR: true
 
 jobs:
-    build:
+    prepare:
         runs-on: ubuntu-latest
-
         steps:
-            - name: Checkout codes
+            - name: 切换到runner上
               uses: actions/checkout@v3
+            
+            - name: 下载"京东多合一签到脚本"
+              run: wget https://raw.githubusercontent.com/NobyDa/Script/master/JD-DailyBonus/JD_DailyBonus.js
               
-            - name: Use Node.js
+            - name: 安装nodejs
               uses: actions/setup-node@v1
               with:
                 node-version: '12.x'
                 
-            - name: Run install
+            - name: 安装依赖
               run: npm install
-              
-            - name: Run Script
-              run: node jd_sign.js
+
+            - name: tsc编译ts脚本
+              run: npm i -g typescript
+              run: tsc
+
+    jd_assign:
+        needs: prepare
+        runs-on: ubuntu-latest
+        steps:
+            - name: 执行脚本
+              run: node index.js
                 
             - name: Upload result file
               uses: actions/upload-artifact@master
