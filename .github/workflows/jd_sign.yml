@@ -2,7 +2,7 @@ name: 京东自动签到领京豆
 
 on:
   schedule:
-    - cron: '0 20 * * *'     
+    - cron: '0 0 * * *'     
 env:
   JD_COOKIE: ${{ secrets.JD_COOKIE }}
   PUSH_KEY: ${{ secrets.PUSH_KEY }}

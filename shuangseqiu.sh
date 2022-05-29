@@ -61,7 +61,7 @@ while((pointer<order))
 do
 	read -t 10 -p "你想打印多少组双色球号码？请输入数字（默认是打印8888组，不能低于10组）: " REPLY
 	echo ""
-	REPLY=${REPLY:=12}
+	REPLY=${REPLY:=8888}
 
 	if grep -q '^[[:digit:]]*$' <<< $REPLY && [ $REPLY -ge 10 ];then   # 这里<<<表示grep在REPLY变量中查找某字符
 		pointer=3
@@ -177,6 +177,8 @@ do
 	# PUSH_KEY="*******************"
 	# title=$(date +"%Y年%m月%d日")——双色球推荐号码
 	# curl -X GET "https://sctapi.ftqq.com/$PUSH_KEY.send?title=$title&desp=$str_tmp"
+
+	sed -i 's/$/\n/g' suppose_shuangseqiu.tmp_bak
 
 	echo "==========================================="
 
