@@ -167,13 +167,12 @@ do
 	#	fi
 	#	echo ${shuangseqiu_array_new[$offset]}
 	done > suppose_shuangseqiu.tmp
-	cat suppose_shuangseqiu.tmp
 	sed -r "s/\x1B\[([0-9]{1,2}(;[0-9]{1,2})?)?[m|K]//g" suppose_shuangseqiu.tmp > suppose_shuangseqiu.tmp_bak
 	echo ""
 	str_tmp=$(sed -n "$offset"p suppose_shuangseqiu.tmp_bak)
 	echo "今天是$today，今天重点推荐该组双色球号码："
 	echo -e "\033[1;30;41m"${str_tmp}"\033[0m"
-	
+
 	# 发送推送到微信上
 	# PUSH_KEY="*******************"
 	# title=$(date +"%Y年%m月%d日")——双色球推荐号码
@@ -217,6 +216,8 @@ do
 	then
 		echo "程序执行完毕!"
 	fi
+
+	
 	#####################
 	# 当运行在github action上时，这句注释掉
 	# rm -f *shuangseqiu_tmp* *shuangseqiu.tmp* $out_put 2>/dev/null

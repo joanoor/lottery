@@ -10,9 +10,10 @@ const text = `${dayjs().format('YYYY年MM月DD日')}——双色球推荐号码`
 readFile('./suppose_shuangseqiu.tmp_bak', {
   encoding: 'utf-8',
 }).then(res => {
+  console.log('suppose_shuangseqiu.tmp_bak内容：', res)
   rp.post({
     uri: `https://sctapi.ftqq.com/${SCKEY}.send`,
-    form: { text, res },
+    form: { text, desp: res },
     json: true,
     method: 'POST',
   })
